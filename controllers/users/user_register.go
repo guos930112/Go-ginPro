@@ -10,6 +10,7 @@ import (
 )
 
 func Register(ctx *gin.Context) {
+	// gin.Context 封装了 request和response
 	DB = common.GetDB()
 	// 获取参数
 	name := ctx.PostForm("name")
@@ -17,6 +18,7 @@ func Register(ctx *gin.Context) {
 	pwd := ctx.PostForm("pwd")
 	// 验证参数
 	if len(tel) != 11 {
+		// gin.H封装了生成json数据的工具 gin.H 是map[string]interface{} 的缩写
 		ctx.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "message": "手机号必须为11位"})
 		return 
 	}
